@@ -4,7 +4,7 @@ export default (state = { comments: [] },action)=>{
      case INIT_COMMENTS:
          return {comments:action.comments};
      case ADD_COMMENT:
-         return [...state.comments,action.comments]
+         return [...state.comments,action.comments];
      case DELETE_COMMENT:
          return {
              comments: [

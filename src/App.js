@@ -12,7 +12,7 @@ function creatStore(reducer){
         state = reducer(state,action);
         listeners.map(listener=>listener());
     };
-    dispatch({});
+    dispatch({}); // 初始化文件
     return {
         getState,
         dispatch,
@@ -20,12 +20,7 @@ function creatStore(reducer){
     }
 }
 
-const themeReducer = (state,action)=>{
-  if(!state){
-      return {
-      themeColor:'red',
-      }
-  }
+const themeReducer = (state = {themeColor:'red'},action)=>{
   switch(action.type){
     case 'CHANGE_COLOR':
       return {...state,themeColor:action.themeColor};
@@ -34,6 +29,7 @@ const themeReducer = (state,action)=>{
   }
 };
 const store = creatStore(themeReducer);
+const ThemeContext = React.createContext({ themeColor: '' });
 class App extends PureComponent {
     static childContextTypes = {
         store: PropTypes.object
@@ -47,8 +43,10 @@ class App extends PureComponent {
     render(){
         return (
             <div className="App">
-                <Header/>
-                <Content />
+                <ThemeContext.Provider value={{ themeColor: '' }}>
+                    <Header/>
+                    <Content />
+                </ThemeContext.Provider>
             </div>
         );
     }

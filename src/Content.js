@@ -18,9 +18,9 @@ class Content extends PureComponent{
     }
 }
 const mapStateToProps = (state)=>{
-    console.log(state,'++');
+    console.log(state,'content ++ mapStateToProps');
     return {
-        themeColor:state.themeColor,
+        themeColor:(state&& state.themeColor) || 'blue',
     }
 };
 // connect 函数返回一个函数  这个函数属于高阶组件

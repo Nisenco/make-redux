@@ -14,15 +14,17 @@ class ThemeSwitch extends PureComponent{
     }
     componentWillMount() {
         const {store} = this.context;
+
         this._updateThemeColor();
         store.subscribe(()=>this._updateThemeColor());
     }
     _updateThemeColor(){
         const {store}=this.context;
+        console.log();
         console.log(store,'888');
-        const state = store.getState();
+        const state = store && store.getState();
         this.setState({
-            themeColor:state.themeColor
+            themeColor:(store && state.themeColor) || 'red'
         })
     }
     handleSwitchColor(color){
