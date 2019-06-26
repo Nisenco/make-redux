@@ -20,8 +20,6 @@ class ThemeSwitch extends PureComponent{
     }
     _updateThemeColor(){
         const {store}=this.context;
-        console.log();
-        console.log(store,'888');
         const state = store && store.getState();
         this.setState({
             themeColor:(store && state.themeColor) || 'red'
