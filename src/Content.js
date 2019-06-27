@@ -1,22 +1,28 @@
 import  React,{PureComponent}from 'react';
 import PropTypes from 'prop-types';
 import ThemeSwitch from './ThemeSwitch';
+import ThemeProvider from './ThemeProvider';
 import {connect} from "./assets/react-redux";
 class Content extends PureComponent{
     static propTypes  = {
         themeColor: PropTypes.string
     };
+    // static contextType = ThemeProvider;
     constructor(props){
         super(props);
-        console.log(this.props,'this.props+++');
+        // console.log(this.context,'this.props+++');
     }
     render() {
-        return(<div style={{color:this.props.themeColor}}>
+        console.log(this.context,'this.props+++');
+        return(
+            <div style={{color:this.props.themeColor}}>
             <h1>React.js 小书内容</h1>
-            <ThemeSwitch />
+                {/*<ThemeProvider.Consumer></ThemeProvider.Consumer>*/}
+            {/*<ThemeSwitch />*/}
         </div>)
     }
 }
+Content.contextType = ThemeProvider;
 const mapStateToProps = (state)=>{
     console.log(state,'content ++ mapStateToProps');
     return {
@@ -25,5 +31,4 @@ const mapStateToProps = (state)=>{
 };
 // connect 函数返回一个函数  这个函数属于高阶组件
 Content = connect(mapStateToProps)(Content);
-
 export default Content;

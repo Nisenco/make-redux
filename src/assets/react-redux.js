@@ -1,22 +1,23 @@
 import  React,{PureComponent}from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import ThemeProvider from '../ThemeProvider';
 const connect = (mapStateToProps,mapDispatchToProps)=>(WrappedComponent)=>{
+    // const store = this.context;
     class Connect extends PureComponent{
-        static contextTypes = {
-            store: PropTypes.object
-        };
         constructor(props){
             super(props);
             this._updateProps = this._updateProps.bind(this);
             this.state = {allProps:{}}
         }
         componentDidMount() {
-            const {store} = this.context;
+            // const {store} = this.props;
+            const store = this.context;
+            console.log(this.props,'react-redux');
             this._updateProps();
             store.subscribe(()=>this._updateProps());
         }
         _updateProps(){
-            const {store} = this.context;
+            const store = this.context;
             let stateProps = mapStateToProps?mapStateToProps(store.getState(),this.props):{};
             let dispatchProps = mapDispatchToProps?mapDispatchToProps(store.dispatch,this.props):{};
             console.log(stateProps,'--stateProps');
@@ -34,6 +35,7 @@ const connect = (mapStateToProps,mapDispatchToProps)=>(WrappedComponent)=>{
             return <WrappedComponent {...allProps}/>
         }
     }
+    Connect.contextType = ThemeProvider;
     return Connect;
 };
 export {

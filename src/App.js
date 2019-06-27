@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 import Header from './Header';
 import Content  from './Content';
+import ThemeProvider from './ThemeProvider';
 function creatStore(reducer){
     let state = null;
     const listeners = [];
@@ -29,7 +30,7 @@ const themeReducer = (state = {themeColor:'red'},action)=>{
   }
 };
 const store = creatStore(themeReducer);
-const ThemeContext = React.createContext({ themeColor: '' });
+console.log(ThemeProvider,'ThemeProvider');
 class App extends PureComponent {
     static childContextTypes = {
         store: PropTypes.object
@@ -37,16 +38,14 @@ class App extends PureComponent {
     constructor(props){
         super(props);
     }
-    getChildContext(){
-        return {store}
-    }
     render(){
+        console.log(store,'store-----app.js');
         return (
             <div className="App">
-                <ThemeContext.Provider value={{ themeColor: '' }}>
+                <ThemeProvider.Provider value={store}>
                     <Header/>
                     <Content />
-                </ThemeContext.Provider>
+                </ThemeProvider.Provider>
             </div>
         );
     }
