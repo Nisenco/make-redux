@@ -1,19 +1,14 @@
 import  React,{PureComponent}from 'react';
-import PropTypes from 'prop-types';
 import ThemeProvider from './ThemeProvider';
+// const state = this.context;
 class ThemeSwitch extends PureComponent{
-    static propTypes = {
-        themeColor:PropTypes.string,
-        onSwitchColor:PropTypes.func,
-    };
     constructor(props){
         super(props);
-        this._updateThemeColor = this._updateThemeColor.bind(this);
         this.state = {
             themeColor:''
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         const store = this.context;
         this._updateThemeColor();
         store.subscribe(()=>this._updateThemeColor());

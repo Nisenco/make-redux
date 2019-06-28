@@ -19,12 +19,10 @@ function creatStore(reducer){
         subscribe
     }
 }
-
 const themeReducer = (state,action)=>{
     if(!state){
         return {themeColor:'red'}
     }
-    console.log(state,'000');
     switch(action.type){
         case 'CHANGE_COLOR':
           return {...state,themeColor:action.themeColor};
@@ -33,6 +31,9 @@ const themeReducer = (state,action)=>{
     }
 };
 const store = creatStore(themeReducer);
+store.subscribe(()=>{
+    console.log(store.getState(),'store.getState----subscribe');
+});
 class App extends PureComponent {
     render(){
         return (
@@ -45,5 +46,4 @@ class App extends PureComponent {
         );
     }
 }
-
 export default App;

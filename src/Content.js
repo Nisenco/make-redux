@@ -14,7 +14,7 @@ class Content extends PureComponent{
 Content.contextType = ThemeProvider;
 const mapStateToProps = (state)=>{
     return {
-        themeColor:(state&& state.themeColor) || 'blue',
+        themeColor:state.themeColor,
     }
 };
 // connect 函数返回一个函数  这个函数属于高阶组件
