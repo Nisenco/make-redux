@@ -22,7 +22,7 @@ class ThemeSwitch extends PureComponent{
         const store =this.context;
         const state = store.getState();
         this.setState({
-            themeColor:(state && state.themeColor) || 'red'
+            themeColor:state.themeColor
         })
     }
     handleSwitchColor(color){

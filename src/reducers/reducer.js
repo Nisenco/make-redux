@@ -1,5 +1,5 @@
 import {INIT_COMMENTS,ADD_COMMENT,DELETE_COMMENT} from './actionTypes';
-export default (state = { comments: [] },action)=>{
+const testReducer = (state = { comments: [] },action)=>{
  switch(action.type){
      case INIT_COMMENTS:
          return {comments:action.comments};
@@ -15,4 +15,5 @@ export default (state = { comments: [] },action)=>{
      default:
          return state;
  }
-}
+};
+export default testReducer;

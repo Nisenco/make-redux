@@ -14,6 +14,8 @@ const connect = (mapStateToProps,mapDispatchToProps)=>(WrappedComponent)=>{
         }
         _updateProps(){
             const store = this.context;
+            console.log(this.props,'connect--props');
+            console.log(store.getState(),'store.getState()-connect');
             let stateProps = mapStateToProps?mapStateToProps(store.getState(),this.props):{};
             let dispatchProps = mapDispatchToProps?mapDispatchToProps(store.dispatch,this.props):{};
             this.setState({

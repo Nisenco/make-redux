@@ -1,21 +1,12 @@
 import  React,{PureComponent}from 'react';
-import PropTypes from 'prop-types';
 import ThemeSwitch from './ThemeSwitch';
 import ThemeProvider from './ThemeProvider';
 import {connect} from "./assets/react-redux";
 class Content extends PureComponent{
-    static propTypes  = {
-        themeColor: PropTypes.string
-    };
-    // static contextType = ThemeProvider;
-    constructor(props){
-        super(props);
-    }
     render() {
         return(
             <div style={{color:this.props.themeColor}}>
             <h1>React.js 小书内容</h1>
-                {/*<ThemeProvider.Consumer></ThemeProvider.Consumer>*/}
             <ThemeSwitch />
         </div>)
     }

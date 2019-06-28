@@ -1,5 +1,4 @@
 import React,{PureComponent} from 'react';
-import PropTypes from 'prop-types';
 import './App.css';
 import Header from './Header';
 import Content  from './Content';
@@ -21,27 +20,25 @@ function creatStore(reducer){
     }
 }
 
-const themeReducer = (state = {themeColor:'red'},action)=>{
-  switch(action.type){
-    case 'CHANGE_COLOR':
-      return {...state,themeColor:action.themeColor};
-    default:
-      return state;
-  }
+const themeReducer = (state,action)=>{
+    if(!state){
+        return {themeColor:'red'}
+    }
+    console.log(state,'000');
+    switch(action.type){
+        case 'CHANGE_COLOR':
+          return {...state,themeColor:action.themeColor};
+        default:
+          return state;
+    }
 };
 const store = creatStore(themeReducer);
 class App extends PureComponent {
-    static childContextTypes = {
-        store: PropTypes.object
-    };
-    constructor(props){
-        super(props);
-    }
     render(){
         return (
             <div className="App">
                 <ThemeProvider.Provider value={store}>
-                    <Header/>
+                    <Header text='header'/>
                     <Content />
                 </ThemeProvider.Provider>
             </div>
