@@ -30,7 +30,6 @@ const themeReducer = (state = {themeColor:'red'},action)=>{
   }
 };
 const store = creatStore(themeReducer);
-console.log(ThemeProvider,'ThemeProvider');
 class App extends PureComponent {
     static childContextTypes = {
         store: PropTypes.object
@@ -39,7 +38,6 @@ class App extends PureComponent {
         super(props);
     }
     render(){
-        console.log(store,'store-----app.js');
         return (
             <div className="App">
                 <ThemeProvider.Provider value={store}>

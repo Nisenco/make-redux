@@ -1,5 +1,6 @@
 import  React,{PureComponent}from 'react';
 import PropTypes from 'prop-types';
+import ThemeProvider from './ThemeProvider';
 class ThemeSwitch extends PureComponent{
     static propTypes = {
         themeColor:PropTypes.string,
@@ -13,20 +14,19 @@ class ThemeSwitch extends PureComponent{
         }
     }
     componentWillMount() {
-        const {store} = this.context;
-
+        const store = this.context;
         this._updateThemeColor();
         store.subscribe(()=>this._updateThemeColor());
     }
     _updateThemeColor(){
-        const {store}=this.context;
-        const state = store && store.getState();
+        const store =this.context;
+        const state = store.getState();
         this.setState({
-            themeColor:(store && state.themeColor) || 'red'
+            themeColor:(state && state.themeColor) || 'red'
         })
     }
     handleSwitchColor(color){
-        const {store}= this.context;
+        const store = this.context;
         store.dispatch({
             type:'CHANGE_COLOR',
             themeColor:color
@@ -46,5 +46,5 @@ class ThemeSwitch extends PureComponent{
         </div>)
     }
 }
-
+ThemeSwitch.contextType = ThemeProvider;
 export default ThemeSwitch;

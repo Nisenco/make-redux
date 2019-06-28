@@ -9,15 +9,12 @@ class Header extends PureComponent{
         super(props);
     }
     render() {
-        console.log(this.props,'this.props_header');
-        console.log(this.context,'this.context-header');
         return(<div>
             <h1 style={{color:this.props.themeColor}}>React.js 小书</h1>
         </div>)
     }
 }
 const mapStateToProps = (state)=>{
-    console.log(state,'header-');
     return {
         themeColor:(state && state.themeColor) || 'red',
     }

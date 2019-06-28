@@ -10,21 +10,18 @@ class Content extends PureComponent{
     // static contextType = ThemeProvider;
     constructor(props){
         super(props);
-        // console.log(this.context,'this.props+++');
     }
     render() {
-        console.log(this.context,'this.props+++');
         return(
             <div style={{color:this.props.themeColor}}>
             <h1>React.js 小书内容</h1>
                 {/*<ThemeProvider.Consumer></ThemeProvider.Consumer>*/}
-            {/*<ThemeSwitch />*/}
+            <ThemeSwitch />
         </div>)
     }
 }
 Content.contextType = ThemeProvider;
 const mapStateToProps = (state)=>{
-    console.log(state,'content ++ mapStateToProps');
     return {
         themeColor:(state&& state.themeColor) || 'blue',
     }
